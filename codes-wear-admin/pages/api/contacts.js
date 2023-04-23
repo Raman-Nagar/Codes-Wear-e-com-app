@@ -42,15 +42,18 @@ import nodemailer from "nodemailer"
               </div>` 
             }, "")
 
-    const transporter = nodemailer.createTransport({
-        service:"gmail",
-        auth:{
-            user: "ramannagar08082000@gmail.com", // generated ethereal user
-            pass:"wolndopzyvsuarfn",
-        }
-    }) 
-    const mailOptions = {
-        from:"ramannagar08082000@gmail.com",
+     const transporter = nodeMailer.createTransport({
+         host: process.env.SMPT_HOST,
+         port: process.env.SMPT_PORT,
+         service: process.env.SMPT_SERVICE,
+         auth: {
+           user: process.env.SMPT_MAIL,
+           pass: process.env.SMPT_PASSWORD,
+         },
+       });
+
+     const mailOptions = {
+        from: process.env.SMPT_MAIL,
         to: "ramannagar08082000@gmail.com",
         subject:`Sending Email For ${subject}, by ${email}`,
         text:stringData,
